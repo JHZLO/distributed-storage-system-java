@@ -2,12 +2,13 @@ spring:
   application:
     name: org
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/
+    url: jdbc:mysql://127.0.0.1:3306/mydb
     username: root
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
+      dialect: org.hibernate.dialect.MySQLDialect
       ddl-auto: update
     properties:
       hibernate:
