@@ -71,7 +71,7 @@ JSON의 형식을 총 두 번 정의해줘야함
 ## 💡 Distributed Storage 💡 
 ![image](https://github.com/user-attachments/assets/b28c1b7d-16c4-4276-95b2-e4539edbcc1a)
 ![image](https://github.com/user-attachments/assets/0758a0ac-4c91-4e9f-b3b1-2a7894df03e5)
-
+백업 서버는 x
 
 
 ## 📨 Messages
