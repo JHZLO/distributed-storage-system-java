@@ -1,4 +1,4 @@
-package org.TcpServer.repository;
+package org.TcpServer.database;
 
 import org.json.JSONObject;
 
