@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class Memo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(nullable = true)
     private String title;
