@@ -73,6 +73,16 @@ JSON의 형식을 총 두 번 정의해줘야함
 ![image](https://github.com/user-attachments/assets/0758a0ac-4c91-4e9f-b3b1-2a7894df03e5)
 백업 서버는 x
 
+### 동작과정
+0. 사전에 LocalStorageServer는 PrimaryStorageServer와 연결하고, Primary서버로부터 전체 데이터를 받는다.
+1. client가 api서버에 post 요청을 날린다. (POST /notes)
+(POST 요청시에는 POST /primary가 동시에 이루어지도록, 동시에 request하도록 설계한다.)
+2. localStorage가 업데이트 되며, primaryStorage에게 request를 날린다 (POST /primary)
+3. primaryStorage는 backupServer에 update된 내용을 전달한다 (POST /backup)
+4. 동시에 primaryStorage는 연결되어있는 localStorage들에게 update된 내용을 전달한다(write). (localStorage Server의 Post 메서드 호출 POST /notes)
+5. primaryStorage가 LocalStorage에 write하면 LocalStorageServer는 response message를 전달한다.
+6. 이러한 모든 과정이 끝나면 client에게 다시 acknowledge message를 전달한다.
+
 
 ## 📨 Messages
 ![image](https://github.com/user-attachments/assets/0500d622-0a8c-4190-aff6-16494f213525)
