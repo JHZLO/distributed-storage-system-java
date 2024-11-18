@@ -82,7 +82,7 @@ public class MemoControllerTest {
     @Test
     public void testCreateMemo() throws Exception {
         Memo memo = new Memo(null, "New Title", "New Body");
-        Memo createdMemo = new Memo(1L, "New Title", "New Body");
+        Memo createdMemo = new Memo(1, "New Title", "New Body");
 
         when(memoService.createMemo(any(Memo.class))).thenReturn(createdMemo);
 
@@ -98,7 +98,7 @@ public class MemoControllerTest {
 
     @Test
     public void testUpdateMemo() throws Exception {
-        Memo updatedMemo = new Memo(1L, "Updated Title", "Updated Body");
+        Memo updatedMemo = new Memo(1, "Updated Title", "Updated Body");
 
         when(memoService.updateMemo(anyLong(), any(Memo.class))).thenReturn(updatedMemo);
 
