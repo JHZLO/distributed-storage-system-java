@@ -1,17 +1,8 @@
 spring:
   application:
     name: org
-  datasource:
-    url: jdbc:mysql://127.0.0.1:3306/mydb
-    username: root
-    password: 1234
-    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    hibernate:
-      dialect: org.hibernate.dialect.MySQLDialect
-      ddl-auto: update
-    properties:
-      hibernate:
-        format_sql: true
-    generate-ddl: true
-    show-sql: true
+    generate-ddl: false
+    show-sql: false
+local-storage:
+  url: http://localhost:3301
