@@ -5,13 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d17e54bb-7152-47ca-bc74-3e2df96070ce" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../LocalStorageServer.java/src/main/java/org/example/Note.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TcpServer/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TcpServer/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TcpServer/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TcpServer/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TcpServer/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TcpServer/src/main/java/org/TcpServer/TcpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TcpServer/src/main/java/org/TcpServer/TcpServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LocalStorageServer.java/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../localStorageServer-UDP/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../localStorageServer-UDP/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../localStorageServer-UDP/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../localStorageServer-UDP/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/notes.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/src/main/java/org/localStorage/LocalStorageServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/src/main/java/org/localStorage/controller/RequestHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/src/main/java/org/localStorage/domain/Note.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/src/main/java/org/localStorage/dto/ErrorResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/src/main/java/org/localStorage/dto/SuccessResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/src/main/java/org/localStorage/repository/NoteRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/src/main/resources/notes.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UdpServer/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../UdpServer/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UdpServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../UdpServer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UdpServer/src/main/java/org/udpServer/UdpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../UdpServer/src/main/java/org/udpServer/UdpServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,30 +48,30 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2oyiR8yxXqkNChFqyE1Fc6fqDc1" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.clientTest [:UdpClient.main()].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/kjh01/Desktop/DistributedStorage/distributed-system-primary-storage-java/clientTest/src/main/java/org/example/Main.java",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.clientTest [:UdpClient.main()].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/kjh01/Desktop/DistributedStorage/distributed-system-primary-storage-java/clientTest/src/main/java/org/example/Main.java&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="UdpClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.UdpClient" />
@@ -86,6 +108,7 @@
       <option name="presentableId" value="Default" />
       <updated>1731848208848</updated>
       <workItem from="1731848211298" duration="647000" />
+      <workItem from="1732021275766" duration="239000" />
     </task>
     <servers />
   </component>
