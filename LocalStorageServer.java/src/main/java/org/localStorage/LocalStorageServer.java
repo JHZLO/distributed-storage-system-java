@@ -1,10 +1,12 @@
-package org.example;
+package org.localStorage;
 
 import org.json.JSONObject;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import org.localStorage.controller.RequestHandler;
+import org.localStorage.repository.NoteRepository;
 
 public class LocalStorageServer {
     private final RequestHandler requestHandler;
