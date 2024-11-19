@@ -48,7 +48,6 @@ public class NoteRepository {
     public Note replaceNote(int id, String title, String body) {
         Note note = notes.get(id);
         if (note != null) {
-            // 새 데이터를 사용해 Note 객체를 덮어씌움
             Note newNote = new Note(id, title, body);
             notes.put(id, newNote);
             saveToFile();

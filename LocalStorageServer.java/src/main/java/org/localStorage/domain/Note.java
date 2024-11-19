@@ -2,8 +2,8 @@ package org.localStorage.domain;
 
 import java.io.Serializable;
 
-public class Note implements Serializable { // Serializable 인터페이스 구현
-    private static final long serialVersionUID = 1L; // 클래스 버전 관리를 위한 ID
+public class Note implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private int id;
     private String title;

@@ -17,7 +17,7 @@ public class LocalStorageServer {
 
     public static void main(String[] args) {
         LocalStorageServer server = new LocalStorageServer();
-        server.start(3301); // API 서버와 다른 포트를 사용
+        server.start(3301);
     }
 
     public void start(int port) {
@@ -29,7 +29,6 @@ public class LocalStorageServer {
                      BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                      PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
 
-                    // HTTP 요청 읽기
                     StringBuilder requestBuilder = new StringBuilder();
                     String line;
                     int contentLength = 0;
@@ -37,7 +36,6 @@ public class LocalStorageServer {
                     while ((line = in.readLine()) != null && !line.isEmpty()) {
                         requestBuilder.append(line).append("\n");
 
-                        // Content-Length 헤더를 읽어 본문 길이를 가져옴
                         if (line.toLowerCase().startsWith("content-length:")) {
                             contentLength = Integer.parseInt(line.split(":")[1].trim());
                         }
@@ -70,14 +68,12 @@ public class LocalStorageServer {
 
                     System.out.println("클라이언트 요청: " + jsonRequest);
 
-                    // 요청 처리
                     String response = requestHandler.handleRequest(
                             jsonRequest.getString("method"),
                             jsonRequest.getString("path"),
                             jsonRequest
                     );
 
-                    // 성공 응답
                     sendSuccessResponse(out, response);
 
                 } catch (Exception e) {

@@ -58,10 +58,8 @@ public class LocalStorageService {
             body.put("body", note.getBody());
             jsonRequest.put("body", body);
 
-            // 요청 전송
             restTemplate.postForObject(localStorageUrl, jsonRequest.toString(), Void.class);
 
-            // Note 객체에 id 설정 후 반환
             note.setId(id);
             return Optional.of(note);
         } catch (Exception e) {

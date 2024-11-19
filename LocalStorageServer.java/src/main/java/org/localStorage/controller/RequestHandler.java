@@ -9,7 +9,7 @@ import org.localStorage.repository.NoteRepository;
 
 public class RequestHandler {
     private final NoteRepository repository;
-    private final Gson gson = new Gson(); // Gson 객체 추가
+    private final Gson gson = new Gson();
 
     public RequestHandler(NoteRepository repository) {
         this.repository = repository;
@@ -45,7 +45,7 @@ public class RequestHandler {
         int id = Integer.parseInt(path.split("/")[2]);
         Note note = repository.getNoteById(id);
         if (note != null) {
-            return gson.toJson(note); // Note 객체를 JSON으로 반환
+            return gson.toJson(note);
         }
         return gson.toJson(new ErrorResponse("메모가 존재하지 않습니다."));
     }
@@ -54,7 +54,7 @@ public class RequestHandler {
         String title = jsonRequest.getJSONObject("body").getString("title");
         String body = jsonRequest.getJSONObject("body").getString("body");
         Note note = repository.createNote(title, body);
-        return gson.toJson(note); // 새로 생성된 Note 객체를 JSON으로 반환
+        return gson.toJson(note);
     }
 
     private String handlePutNote(String path, JSONObject jsonRequest) {
@@ -65,7 +65,6 @@ public class RequestHandler {
             return gson.toJson(new ErrorResponse("메모가 존재하지 않습니다."));
         }
 
-        // 새로운 데이터로 덮어씌우기
         String title = jsonRequest.getJSONObject("body").optString("title", null);
         String body = jsonRequest.getJSONObject("body").optString("body", null);
 
@@ -86,7 +85,6 @@ public class RequestHandler {
             return gson.toJson(new ErrorResponse("메모가 존재하지 않습니다."));
         }
 
-        // 전달된 값만 업데이트
         String title = jsonRequest.getJSONObject("body").optString("title", note.getTitle());
         String body = jsonRequest.getJSONObject("body").optString("body", note.getBody());
 
