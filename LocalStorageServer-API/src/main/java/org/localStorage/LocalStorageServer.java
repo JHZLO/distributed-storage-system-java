@@ -31,7 +31,6 @@ public class LocalStorageServer {
                      BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                      PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
 
-                    // 첫 번째 줄 읽기
                     String firstLine = in.readLine();
                     if (firstLine == null || firstLine.isEmpty()) {
                         sendErrorResponse(out, "요청이 비어 있습니다.");
@@ -57,7 +56,6 @@ public class LocalStorageServer {
     }
 
     private boolean isHttpRequest(String firstLine) {
-        // HTTP 요청의 첫 번째 줄은 "METHOD /path HTTP/1.x" 형식을 가짐
         return firstLine.startsWith("GET") || firstLine.startsWith("POST") ||
                 firstLine.startsWith("PUT") || firstLine.startsWith("DELETE") ||
                 firstLine.startsWith("PATCH");
@@ -77,16 +75,13 @@ public class LocalStorageServer {
             }
         }
 
-        // 본문 읽기
         char[] bodyChars = new char[contentLength];
         in.read(bodyChars, 0, contentLength);
         String body = new String(bodyChars);
 
-        // JSON 요청 생성
         JSONObject jsonRequest = parseHttpRequest(headerBuilder.toString(), body);
         System.out.println("클라이언트 요청: " + jsonRequest);
 
-        // 요청 처리
         handleRequest(jsonRequest, out);
     }
 
@@ -145,7 +140,6 @@ public class LocalStorageServer {
             System.out.println("PrimaryStorageServer에 동기화 요청: " + jsonRequest);
             out.println(jsonRequest.toString());
 
-            // PrimaryStorageServer로부터 응답 수신
             String primaryResponse = in.readLine();
             System.out.println("PrimaryStorageServer 응답: " + primaryResponse);
 

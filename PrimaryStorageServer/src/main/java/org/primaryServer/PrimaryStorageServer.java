@@ -39,12 +39,9 @@ public class PrimaryStorageServer {
                     String request = in.readLine();
                     System.out.println("클라이언트 요청: " + request);
 
-                    // 요청 JSON 파싱
                     JSONObject jsonRequest = new JSONObject(request);
                     String method = jsonRequest.getString("method");
                     String path = jsonRequest.getString("path");
-
-                    System.out.println("클라이언트 요청: " + jsonRequest);
 
                     String response = requestHandler.handleRequest(method, path, jsonRequest);
 
@@ -97,24 +94,20 @@ public class PrimaryStorageServer {
              PrintWriter out = new PrintWriter(localSocket.getOutputStream(), true);
              BufferedReader in = new BufferedReader(new InputStreamReader(localSocket.getInputStream()))) {
 
-            System.out.println("LocalStorageServer에 동기화 요청: " + jsonRequest);
             Logger.log(host + ":" + port, "REQUEST", "Forward Request to LocalStorage");
             out.println(jsonRequest.toString());
 
             String primaryResponse = in.readLine();
-            System.out.println("LocalStorageServer 응답: " + primaryResponse);
             Logger.log(host + ":" + port, "REPLY", "Acknowledge write completed");
 
         } catch (IOException e) {
-            // 예외 발생 시 로그 출력 후 상위 호출자로 예외 전달
             System.err.println("LocalStorageServer(" + host + ":" + port + ")와의 연결 실패");
             throw e;
         }
     }
 
 
-    private boolean isDataChangingRequest(String method) {
-        // 데이터 변경 요청인지 확인
+    private boolean isDataChangingRequest(String method) { // 데이터 변경 요청인지 확인
         return method.equalsIgnoreCase("POST") ||
                 method.equalsIgnoreCase("PUT") ||
                 method.equalsIgnoreCase("PATCH") ||

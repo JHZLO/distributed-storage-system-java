@@ -36,7 +36,6 @@ public class LocalStorageServer {
                     String method = jsonRequest.getString("method");
                     String path = jsonRequest.getString("path");
 
-                    // 요청 처리
                     String response = requestHandler.handleRequest(method, path, jsonRequest);
 
                     // 데이터 변화가 있는 요청인 경우 PrimaryStorageServer와 동기화
@@ -44,7 +43,6 @@ public class LocalStorageServer {
                         syncWithPrimaryServer(jsonRequest);
                     }
 
-                    // 클라이언트로 응답 전송
                     out.println(response);
                 }
             }
@@ -53,9 +51,6 @@ public class LocalStorageServer {
         }
     }
 
-    /**
-     * PrimaryStorageServer와 동기화
-     */
     private void syncWithPrimaryServer(JSONObject jsonRequest) {
         try (Socket primarySocket = new Socket(PRIMARY_SERVER_HOST, PRIMARY_SERVER_PORT);
              PrintWriter out = new PrintWriter(primarySocket.getOutputStream(), true);
@@ -66,7 +61,6 @@ public class LocalStorageServer {
             System.out.println("PrimaryStorageServer에 동기화 요청: " + jsonRequest);
             out.println(jsonRequest.toString());
 
-            // PrimaryStorageServer로부터 응답 수신
             String primaryResponse = in.readLine();
             System.out.println("PrimaryStorageServer 응답: " + primaryResponse);
 

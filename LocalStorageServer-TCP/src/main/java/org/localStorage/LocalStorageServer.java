@@ -1,18 +1,20 @@
 package org.localStorage;
 
-import org.json.JSONObject;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import org.json.JSONObject;
 import org.localStorage.controller.RequestHandler;
 import org.localStorage.repository.NoteRepository;
 
 public class LocalStorageServer {
     private static final String PRIMARY_SERVER_HOST = "localhost";
     private static final int PRIMARY_SERVER_PORT = 5001;
-
     private static final String LOCAL_ADDRESS = "http://localhost:3300";
+
     private final RequestHandler requestHandler;
 
     public LocalStorageServer() {
@@ -49,12 +51,12 @@ public class LocalStorageServer {
             e.printStackTrace();
         }
     }
+
     private void syncWithPrimaryServer(String method, String path, JSONObject jsonRequest) {
         try (Socket primarySocket = new Socket(PRIMARY_SERVER_HOST, PRIMARY_SERVER_PORT);
              PrintWriter out = new PrintWriter(primarySocket.getOutputStream(), true);
              BufferedReader in = new BufferedReader(new InputStreamReader(primarySocket.getInputStream()))) {
 
-            // PrimaryStorageServer로 요청 전송
             JSONObject syncRequest = new JSONObject();
             syncRequest.put("method", method);
             syncRequest.put("path", path);
@@ -62,12 +64,11 @@ public class LocalStorageServer {
                 syncRequest.put("body", jsonRequest.getJSONObject("body"));
             }
 
-            jsonRequest.put("origin",LOCAL_ADDRESS);
+            jsonRequest.put("origin", LOCAL_ADDRESS);
 
             System.out.println("PrimaryStorageServer에 동기화 요청: " + syncRequest);
             out.println(syncRequest.toString());
 
-            // PrimaryStorageServer로부터 응답 수신
             String primaryResponse = in.readLine();
             System.out.println("PrimaryStorageServer 응답: " + primaryResponse);
 
