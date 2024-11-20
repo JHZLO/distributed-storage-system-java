@@ -1,18 +1,21 @@
 package org.localStorage;
 
-import org.json.JSONObject;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-
+import org.json.JSONObject;
 import org.localStorage.controller.RequestHandler;
 import org.localStorage.repository.NoteRepository;
 
 public class LocalStorageServer {
-    private final RequestHandler requestHandler;
-
     private static final String PRIMARY_SERVER_HOST = "localhost";
+    private static final String LOCAL_ADDRESS = "http://localhost:3301";
     private static final int PRIMARY_SERVER_PORT = 5001;
+
+    private final RequestHandler requestHandler;
 
     public LocalStorageServer() {
         NoteRepository repository = new NoteRepository();
@@ -28,58 +31,21 @@ public class LocalStorageServer {
                      BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                      PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
 
-                    StringBuilder requestBuilder = new StringBuilder();
-                    String line;
-                    int contentLength = 0;
-
-                    // HTTP Header 읽기
-                    while ((line = in.readLine()) != null && !line.isEmpty()) {
-                        requestBuilder.append(line).append("\n");
-
-                        if (line.toLowerCase().startsWith("content-length:")) {
-                            contentLength = Integer.parseInt(line.split(":")[1].trim());
-                        }
+                    // 첫 번째 줄 읽기
+                    String firstLine = in.readLine();
+                    if (firstLine == null || firstLine.isEmpty()) {
+                        sendErrorResponse(out, "요청이 비어 있습니다.");
+                        continue;
                     }
 
-                    // HTTP Body 읽기
-                    char[] bodyChars = new char[contentLength];
-                    in.read(bodyChars, 0, contentLength);
-                    String body = new String(bodyChars);
-
-                    // JSON 요청 생성
-                    JSONObject jsonRequest = new JSONObject();
-                    String[] requestParts = requestBuilder.toString().split(" ");
-                    jsonRequest.put("method", requestParts[0]);
-                    jsonRequest.put("path", requestParts[1]);
-
-                    if (!body.isEmpty()) {
-                        try {
-                            jsonRequest.put("body", new JSONObject(body));
-                        } catch (Exception e) {
-                            sendErrorResponse(out, "본문을 JSON으로 파싱할 수 없습니다.");
-                            continue;
-                        }
+                    // HTTP 요청인지 JSON 요청인지 판별
+                    if (isHttpRequest(firstLine)) {
+                        // HTTP 요청 처리
+                        handleHttpRequest(firstLine, in, out);
+                    } else {
+                        // JSON 요청 처리
+                        handleJsonRequest(firstLine, out);
                     }
-
-                    // 중첩된 body 구조 처리
-                    if (jsonRequest.has("body") && jsonRequest.getJSONObject("body").has("body")) {
-                        jsonRequest = jsonRequest.getJSONObject("body");
-                    }
-
-                    System.out.println("클라이언트 요청: " + jsonRequest);
-
-                    // 요청 처리
-                    String method = jsonRequest.getString("method");
-                    String path = jsonRequest.getString("path");
-
-                    String response = requestHandler.handleRequest(method, path, jsonRequest);
-
-                    // 데이터 변경 요청이면서 Primary가 아닌 경우 동기화
-                    if (isDataChangingRequest(method) && !isFromPrimary(jsonRequest)) {
-                        syncWithPrimaryServer(jsonRequest);
-                    }
-
-                    sendSuccessResponse(out, response);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -90,14 +56,96 @@ public class LocalStorageServer {
         }
     }
 
+    private boolean isHttpRequest(String firstLine) {
+        // HTTP 요청의 첫 번째 줄은 "METHOD /path HTTP/1.x" 형식을 가짐
+        return firstLine.startsWith("GET") || firstLine.startsWith("POST") ||
+                firstLine.startsWith("PUT") || firstLine.startsWith("DELETE") ||
+                firstLine.startsWith("PATCH");
+    }
+
+    private void handleHttpRequest(String firstLine, BufferedReader in, PrintWriter out) throws Exception {
+        StringBuilder headerBuilder = new StringBuilder();
+        headerBuilder.append(firstLine).append("\n");
+        String line;
+        int contentLength = 0;
+
+        // 헤더 읽기
+        while ((line = in.readLine()) != null && !line.isEmpty()) {
+            headerBuilder.append(line).append("\n");
+            if (line.toLowerCase().startsWith("content-length:")) {
+                contentLength = Integer.parseInt(line.split(":")[1].trim());
+            }
+        }
+
+        // 본문 읽기
+        char[] bodyChars = new char[contentLength];
+        in.read(bodyChars, 0, contentLength);
+        String body = new String(bodyChars);
+
+        // JSON 요청 생성
+        JSONObject jsonRequest = parseHttpRequest(headerBuilder.toString(), body);
+        System.out.println("클라이언트 요청: " + jsonRequest);
+
+        // 요청 처리
+        handleRequest(jsonRequest, out);
+    }
+
+    private JSONObject parseHttpRequest(String header, String body) throws Exception {
+        String[] requestParts = header.split(" ");
+        JSONObject jsonRequest = new JSONObject();
+        jsonRequest.put("method", requestParts[0]);
+        jsonRequest.put("path", requestParts[1]);
+
+        if (!body.isEmpty()) {
+            jsonRequest.put("body", new JSONObject(body));
+        }
+
+        if (jsonRequest.has("body") && jsonRequest.getJSONObject("body").has("body")) {
+            jsonRequest = jsonRequest.getJSONObject("body");
+        }
+        return jsonRequest;
+    }
+
+    private void handleJsonRequest(String firstLine, PrintWriter out) {
+        try {
+            JSONObject jsonRequest = new JSONObject(firstLine);
+            System.out.println("클라이언트 요청: " + jsonRequest);
+
+            handleRequest(jsonRequest, out);
+        } catch (Exception e) {
+            sendErrorResponse(out, "JSON 요청 파싱 오류");
+        }
+    }
+
+    private void handleRequest(JSONObject jsonRequest, PrintWriter out) {
+        try {
+            String method = jsonRequest.getString("method");
+            String path = jsonRequest.getString("path");
+
+            String response = requestHandler.handleRequest(method, path, jsonRequest);
+
+            // 데이터 변경 요청인 경우 Primary로 동기화
+            if (isDataChangingRequest(method) && !isFromPrimary(jsonRequest)) {
+                syncWithPrimaryServer(jsonRequest);
+            }
+
+            sendSuccessResponse(out, response);
+        } catch (Exception e) {
+            sendErrorResponse(out, "요청 처리 중 오류 발생");
+        }
+    }
+
     private void syncWithPrimaryServer(JSONObject jsonRequest) {
         try (Socket primarySocket = new Socket(PRIMARY_SERVER_HOST, PRIMARY_SERVER_PORT);
              PrintWriter out = new PrintWriter(primarySocket.getOutputStream(), true);
              BufferedReader in = new BufferedReader(new InputStreamReader(primarySocket.getInputStream()))) {
 
+            jsonRequest.put("origin",LOCAL_ADDRESS);
+
             System.out.println("PrimaryStorageServer에 동기화 요청: " + jsonRequest);
             out.println(jsonRequest.toString());
 
+            // PrimaryStorageServer로부터 응답 수신
             String primaryResponse = in.readLine();
             System.out.println("PrimaryStorageServer 응답: " + primaryResponse);
 
@@ -107,9 +155,6 @@ public class LocalStorageServer {
         }
     }
 
-    /**
-     * 데이터 변화가 있는 요청인지 확인
-     */
     private boolean isDataChangingRequest(String method) {
         // POST, PUT, PATCH, DELETE 요청만 동기화
         return method.equalsIgnoreCase("POST") ||
@@ -118,9 +163,6 @@ public class LocalStorageServer {
                 method.equalsIgnoreCase("DELETE");
     }
 
-    /**
-     * 요청이 PrimaryStorageServer로부터 온 것인지 확인
-     */
     private boolean isFromPrimary(JSONObject jsonRequest) {
         return "primary".equalsIgnoreCase(jsonRequest.optString("origin", ""));
     }

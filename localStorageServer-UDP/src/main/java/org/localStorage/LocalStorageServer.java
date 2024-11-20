@@ -11,6 +11,7 @@ import java.net.Socket;
 public class LocalStorageServer {
     private static final String PRIMARY_SERVER_HOST = "localhost";
     private static final int PRIMARY_SERVER_PORT = 5001;
+    private static final String LOCAL_ADDRESS = "http://localhost:3302";
 
     private final RequestHandler requestHandler;
 
@@ -59,6 +60,8 @@ public class LocalStorageServer {
         try (Socket primarySocket = new Socket(PRIMARY_SERVER_HOST, PRIMARY_SERVER_PORT);
              PrintWriter out = new PrintWriter(primarySocket.getOutputStream(), true);
              BufferedReader in = new BufferedReader(new InputStreamReader(primarySocket.getInputStream()))) {
+
+            jsonRequest.put("origin",LOCAL_ADDRESS);
 
             System.out.println("PrimaryStorageServer에 동기화 요청: " + jsonRequest);
             out.println(jsonRequest.toString());

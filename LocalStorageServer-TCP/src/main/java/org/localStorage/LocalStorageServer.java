@@ -11,6 +11,8 @@ import org.localStorage.repository.NoteRepository;
 public class LocalStorageServer {
     private static final String PRIMARY_SERVER_HOST = "localhost";
     private static final int PRIMARY_SERVER_PORT = 5001;
+
+    private static final String LOCAL_ADDRESS = "http://localhost:3300";
     private final RequestHandler requestHandler;
 
     public LocalStorageServer() {
@@ -60,8 +62,7 @@ public class LocalStorageServer {
                 syncRequest.put("body", jsonRequest.getJSONObject("body"));
             }
 
-            // 동기화 요청임을 명시
-            syncRequest.put("origin", "local");
+            jsonRequest.put("origin",LOCAL_ADDRESS);
 
             System.out.println("PrimaryStorageServer에 동기화 요청: " + syncRequest);
             out.println(syncRequest.toString());

@@ -11,6 +11,7 @@ import java.util.List;
 import org.json.JSONObject;
 import org.primaryServer.controller.RequestHandler;
 import org.primaryServer.repository.NoteRepository;
+import org.primaryServer.util.Logger;
 
 public class PrimaryStorageServer {
     private final RequestHandler requestHandler;
@@ -45,7 +46,6 @@ public class PrimaryStorageServer {
 
                     System.out.println("클라이언트 요청: " + jsonRequest);
 
-                    // 요청 처리
                     String response = requestHandler.handleRequest(method, path, jsonRequest);
 
                     // 데이터 변경 요청인 경우 로컬 서버와 동기화
@@ -53,7 +53,6 @@ public class PrimaryStorageServer {
                         synchronizeToLocalStorageServers(jsonRequest);
                     }
 
-                    // 클라이언트에 응답 전송
                     sendSuccessResponse(out, response);
 
                 } catch (Exception e) {
@@ -66,9 +65,19 @@ public class PrimaryStorageServer {
     }
 
     private void synchronizeToLocalStorageServers(JSONObject jsonRequest) {
+        String originServer = jsonRequest.optString("origin", "");
+
         for (String serverUrl : LOCAL_STORAGE_SERVERS) {
+            String[] serverInfo = serverUrl.replace("http://", "").split(":");
+            String host = serverInfo[0];
+            int port = Integer.parseInt(serverInfo[1]);
+
+            // 요청을 보낸 서버와 동일한 서버는 동기화 대상에서 제외
+            if (serverUrl.equals(originServer)) {
+                continue;
+            }
+
             try {
-                // 각 로컬 서버로 요청 전달
                 sendToLocalStorageServer(serverUrl, jsonRequest);
             } catch (IOException e) {
                 System.err.println("LocalStorageServer와의 통신 실패: " + serverUrl);
@@ -77,26 +86,32 @@ public class PrimaryStorageServer {
         }
     }
 
-    private void sendToLocalStorageServer(String serverUrl, JSONObject jsonRequest)
-            throws IOException {
+
+    private void sendToLocalStorageServer(String serverUrl, JSONObject jsonRequest) throws IOException {
         jsonRequest.put("origin", "primary");
         String[] serverInfo = serverUrl.replace("http://", "").split(":");
         String host = serverInfo[0];
         int port = Integer.parseInt(serverInfo[1]);
+
         try (Socket localSocket = new Socket(host, port);
              PrintWriter out = new PrintWriter(localSocket.getOutputStream(), true);
              BufferedReader in = new BufferedReader(new InputStreamReader(localSocket.getInputStream()))) {
+
             System.out.println("LocalStorageServer에 동기화 요청: " + jsonRequest);
+            Logger.log(host + ":" + port, "REQUEST", "Forward Request to LocalStorage");
             out.println(jsonRequest.toString());
 
             String primaryResponse = in.readLine();
             System.out.println("LocalStorageServer 응답: " + primaryResponse);
+            Logger.log(host + ":" + port, "REPLY", "Acknowledge write completed");
 
         } catch (IOException e) {
-            System.err.println("PrimaryStorageServer와의 동기화 실패");
-            e.printStackTrace();
+            // 예외 발생 시 로그 출력 후 상위 호출자로 예외 전달
+            System.err.println("LocalStorageServer(" + host + ":" + port + ")와의 연결 실패");
+            throw e;
         }
     }
+
 
     private boolean isDataChangingRequest(String method) {
         // 데이터 변경 요청인지 확인
