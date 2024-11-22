@@ -1,7 +1,15 @@
 package org.udpServer;
 
-import java.io.*;
-import java.net.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.Socket;
+import org.json.JSONObject;
+import org.udpServer.util.Logger;
 
 public class UdpServer {
     public static void main(String[] args) {
@@ -18,27 +26,46 @@ public class UdpServer {
                     DatagramPacket receivePacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
                     udpSocket.receive(receivePacket);
                     String clientRequest = new String(receivePacket.getData(), 0, receivePacket.getLength());
-                    System.out.println("클라이언트 요청: " + clientRequest);
 
-                    String storageResponse;
-                    try (Socket storageSocket = new Socket(storageHost, storagePort);
-                         PrintWriter storageOut = new PrintWriter(storageSocket.getOutputStream(), true);
-                         BufferedReader storageIn = new BufferedReader(new InputStreamReader(storageSocket.getInputStream()))) {
+                    String method = "UNKNOWN";
+                    String path = "UNKNOWN";
+                    String responseBody = "";
 
-                        storageOut.println(clientRequest);
-                        storageResponse = storageIn.readLine();
+                    try {
+                        if (clientRequest != null) {
+                            JSONObject jsonRequest = new JSONObject(clientRequest);
+                            method = jsonRequest.optString("method", "UNKNOWN");
+                            path = jsonRequest.optString("path", "UNKNOWN");
+                        }
+                    } catch (Exception e) {
+                        System.err.println("요청 JSON 파싱 중 오류 발생: " + e.getMessage());
                     }
 
-                    byte[] sendBuffer = storageResponse.getBytes();
+                    try (Socket storageSocket = new Socket(storageHost, storagePort);
+                         PrintWriter storageOut = new PrintWriter(storageSocket.getOutputStream(), true);
+                         BufferedReader storageIn = new BufferedReader(
+                                 new InputStreamReader(storageSocket.getInputStream()))) {
+
+                        storageOut.println(clientRequest);
+                        responseBody = storageIn.readLine();
+                    }
+
+                    byte[] sendBuffer = responseBody.getBytes();
                     InetAddress clientAddress = receivePacket.getAddress();
                     int clientPort = receivePacket.getPort();
-                    DatagramPacket sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length, clientAddress, clientPort);
+                    DatagramPacket sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length, clientAddress,
+                            clientPort);
                     udpSocket.send(sendPacket);
+
+                    Logger.log(method, path, clientRequest, responseBody);
+
                 } catch (Exception e) {
+                    System.err.println("요청 처리 중 오류 발생");
                     e.printStackTrace();
                 }
             }
         } catch (IOException e) {
+            System.err.println("UDP 서버 실행 중 오류 발생");
             e.printStackTrace();
         }
     }

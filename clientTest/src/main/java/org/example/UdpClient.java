@@ -8,7 +8,7 @@ public class UdpClient {
     public static void main(String[] args) {
         String serverHost = "localhost";
         int serverPort = 12345;
-        String request = "{\"method\": \"POST\", \"path\": \"/notes\", \"body\": {\"title\": \"New Note\", \"body\": \"This is a test note\"}}";
+        String request = "{\"method\": \"POST\", \"path\": \"/notes\", \"body\": {\"title\": \"Neww Note\", \"body\": \"This is a test note\"}}";
 
         try (DatagramSocket socket = new DatagramSocket()) {
             // 서버로 요청 전송
