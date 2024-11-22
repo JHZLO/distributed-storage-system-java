@@ -9,6 +9,7 @@ import java.net.Socket;
 import org.json.JSONObject;
 import org.localStorage.controller.RequestHandler;
 import org.localStorage.repository.NoteRepository;
+import org.localStorage.util.Logger;
 
 public class LocalStorageServer {
     private static final String PRIMARY_SERVER_HOST = "localhost";
@@ -57,21 +58,13 @@ public class LocalStorageServer {
              PrintWriter out = new PrintWriter(primarySocket.getOutputStream(), true);
              BufferedReader in = new BufferedReader(new InputStreamReader(primarySocket.getInputStream()))) {
 
-            JSONObject syncRequest = new JSONObject();
-            syncRequest.put("method", method);
-            syncRequest.put("path", path);
-            if (jsonRequest.has("body")) {
-                syncRequest.put("body", jsonRequest.getJSONObject("body"));
-            }
+            jsonRequest.put("origin",LOCAL_ADDRESS);
 
-            jsonRequest.put("origin", LOCAL_ADDRESS);
-
-            System.out.println("PrimaryStorageServer에 동기화 요청: " + syncRequest);
-            out.println(syncRequest.toString());
+            Logger.log(PRIMARY_SERVER_HOST + ":" + PRIMARY_SERVER_PORT, "REQUEST", "Forward Request to primary");
+            out.println(jsonRequest.toString());
 
             String primaryResponse = in.readLine();
-            System.out.println("PrimaryStorageServer 응답: " + primaryResponse);
-
+            Logger.log(PRIMARY_SERVER_HOST + ":" + PRIMARY_SERVER_PORT, "REPLY", "Acknowledge write completed");
         } catch (IOException e) {
             System.err.println("PrimaryStorageServer와의 동기화 실패");
             e.printStackTrace();
