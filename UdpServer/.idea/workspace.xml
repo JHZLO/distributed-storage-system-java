@@ -5,37 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6884aeeb-499a-4a9a-a4fc-36eff6e141a7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../LocalStorageServer.java/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../localStorageServer-UDP/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../localStorageServer-UDP/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../localStorageServer-UDP/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../localStorageServer-UDP/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/notes.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/src/main/java/org/localStorage/LocalStorageServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/src/main/java/org/localStorage/controller/RequestHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/src/main/java/org/localStorage/domain/Note.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/src/main/java/org/localStorage/dto/ErrorResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/src/main/java/org/localStorage/dto/SuccessResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/src/main/java/org/localStorage/repository/NoteRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LocalStorageServer.java/src/main/resources/notes.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/udpServer/UdpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/udpServer/UdpServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../clientTest/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../clientTest/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../clientTest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../clientTest/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../clientTest/src/main/java/org/example/UdpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../clientTest/src/main/java/org/example/UdpClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PrimaryStorageServer/src/main/resources/notes.json" beforeDir="false" afterPath="$PROJECT_DIR$/../PrimaryStorageServer/src/main/resources/notes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../localStorageServer-UDP/src/main/resources/notes.json" beforeDir="false" afterPath="$PROJECT_DIR$/../localStorageServer-UDP/src/main/resources/notes.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,6 +90,7 @@
       <updated>1731832272691</updated>
       <workItem from="1731832274002" duration="4302000" />
       <workItem from="1732019831491" duration="1194000" />
+      <workItem from="1732021665725" duration="4057000" />
     </task>
     <servers />
   </component>

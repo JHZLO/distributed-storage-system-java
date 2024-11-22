@@ -106,7 +106,6 @@ public class PrimaryStorageServer {
         }
     }
 
-
     private boolean isDataChangingRequest(String method) { // 데이터 변경 요청인지 확인
         return method.equalsIgnoreCase("POST") ||
                 method.equalsIgnoreCase("PUT") ||
