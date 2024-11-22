@@ -33,7 +33,6 @@ public class LocalStorageServer {
                      PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
 
                     String request = in.readLine();
-                    System.out.println("클라이언트 요청: " + request);
 
                     JSONObject jsonRequest = new JSONObject(request);
                     String method = jsonRequest.getString("method");
