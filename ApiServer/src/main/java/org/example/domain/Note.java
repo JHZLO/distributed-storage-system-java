@@ -1,8 +1,12 @@
 package org.example.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Getter;
+import lombok.Setter;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Getter
+@Setter
 public class Note {
     private int id;
     private String title;
@@ -14,28 +18,8 @@ public class Note {
         this.body = body;
     }
 
-    // Getter 및 Setter
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
+    @Override
+    public String toString() {
+        return String.format("{\"id\": %d, \"title\": \"%s\", \"body\": \"%s\"}", id, title, body);
     }
 }

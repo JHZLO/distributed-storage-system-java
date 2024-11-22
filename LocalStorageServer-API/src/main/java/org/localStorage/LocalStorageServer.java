@@ -81,7 +81,6 @@ public class LocalStorageServer {
         String body = new String(bodyChars);
 
         JSONObject jsonRequest = parseHttpRequest(headerBuilder.toString(), body);
-        System.out.println("클라이언트 요청: " + jsonRequest);
 
         handleRequest(jsonRequest, out);
     }
