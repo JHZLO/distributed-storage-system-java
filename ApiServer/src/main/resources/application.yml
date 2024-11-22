@@ -5,4 +5,4 @@ spring:
     generate-ddl: false
     show-sql: false
 local-storage:
-  url: http://localhost:3301
+  url: http://localhost:5000
