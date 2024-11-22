@@ -8,7 +8,12 @@ public class UdpClient {
     public static void main(String[] args) {
         String serverHost = "10.20.0.119";
         int serverPort = 12345;
-        String request = "{\"method\": \"POST\", \"path\": \"/notes\", \"body\": {\"title\": \"UDP Note\", \"body\": \"This is a UDP note\"}}";
+        // String request = "{\"method\": \"POST\", \"path\": \"/notes\", \"body\": {\"title\": \"UDP Note\", \"body\": \"This is a UDP note\"}}";
+        // String request = "{\"method\": \"GET\", \"path\": \"/notes\"}";
+        // String request = "{\"method\": \"GET\", \"path\": \"/notes/1\"}";
+        // String request = "{\"method\": \"PUT\", \"path\": \"/notes/1\", \"body\": {\"title\": \"UDP put Note\"}}";
+        // String request = "{\"method\": \"PATCH\", \"path\": \"/notes/1\", \"body\": {\"title\": \"UDP patch Note\", \"body\": \"This is a UDP patch note\"}}";
+        String request = "{\"method\": \"DELETE\", \"path\": \"/notes/1\"}";
 
         try (DatagramSocket socket = new DatagramSocket()) {
             // 서버로 요청 전송

@@ -27,13 +27,12 @@ public class LocalStorageServer {
     public void start(int port) {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("LocalStorageServer가 포트 " + port + "에서 실행 중입니다...");
-
+            try {
+                initializeFromPrimaryServer(); // PrimaryStorageServer로부터 데이터 초기화
+            } catch (Exception e) {
+                System.err.println("PrimaryStorageServer로부터 초기화 실패: " + e.getMessage());
+            }
             while (true) {
-                try {
-                    initializeFromPrimaryServer(); // PrimaryStorageServer로부터 데이터 초기화
-                } catch (Exception e) {
-                    System.err.println("PrimaryStorageServer로부터 초기화 실패: " + e.getMessage());
-                }
                 try (Socket clientSocket = serverSocket.accept();
                      BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                      PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
