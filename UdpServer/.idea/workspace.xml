@@ -5,8 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6884aeeb-499a-4a9a-a4fc-36eff6e141a7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../PrimaryStorageServer/src/main/resources/notes.json" beforeDir="false" afterPath="$PROJECT_DIR$/../PrimaryStorageServer/src/main/resources/notes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../localStorageServer-UDP/src/main/resources/notes.json" beforeDir="false" afterPath="$PROJECT_DIR$/../localStorageServer-UDP/src/main/resources/notes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ApiServer/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../ApiServer/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ApiServer/src/main/java/org/example/SpringBootDeveloperApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ApiServer/src/main/java/org/apiServer/SpringBootDeveloperApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ApiServer/src/main/java/org/example/controller/NoteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ApiServer/src/main/java/org/apiServer/controller/NoteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ApiServer/src/main/java/org/example/domain/Note.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ApiServer/src/main/java/org/apiServer/domain/Note.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ApiServer/src/main/java/org/example/service/LocalStorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ApiServer/src/main/java/org/apiServer/service/LocalStorageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ApiServer/src/main/java/org/example/util/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ApiServer/src/main/java/org/apiServer/util/Logger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer-API/src/main/resources/notes.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer-TCP/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../LocalStorageServer-TCP/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer-TCP/src/main/java/org/localStorage/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LocalStorageServer-TCP/src/main/java/org/localStorage/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer-TCP/src/main/java/org/localStorage/LocalStorageServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LocalStorageServer-TCP/src/main/java/org/localStorage/LocalStorageServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LocalStorageServer-TCP/src/main/resources/notes.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PrimaryStorageServer/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../PrimaryStorageServer/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PrimaryStorageServer/src/main/java/org/primaryServer/PrimaryStorageServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PrimaryStorageServer/src/main/java/org/primaryServer/PrimaryStorageServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PrimaryStorageServer/src/main/java/org/primaryServer/repository/NoteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PrimaryStorageServer/src/main/java/org/primaryServer/repository/NoteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PrimaryStorageServer/src/main/resources/notes.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TcpServer/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../TcpServer/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TcpServer/src/main/java/org/TcpServer/TcpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TcpServer/src/main/java/org/TcpServer/TcpServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TcpServer/src/main/java/org/TcpServer/controller/RequestHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TcpServer/src/main/java/org/TcpServer/database/MemoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/udpServer/UdpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/udpServer/UdpServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/udpServer/controller/RequestHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/udpServer/database/MemoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../clientTest/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../clientTest/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../clientTest/src/main/java/org/example/UdpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../clientTest/src/main/java/org/example/UdpClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../localStorageServer-UDP/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../localStorageServer-UDP/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../localStorageServer-UDP/src/main/java/org/localStorage/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/../localStorageServer-UDP/src/main/java/org/localStorage/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../localStorageServer-UDP/src/main/java/org/localStorage/LocalStorageServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../localStorageServer-UDP/src/main/java/org/localStorage/LocalStorageServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../localStorageServer-UDP/src/main/java/org/localStorage/repository/NoteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../localStorageServer-UDP/src/main/java/org/localStorage/repository/NoteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../localStorageServer-UDP/src/main/resources/notes.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +45,37 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="UdpServer" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="UdpServer" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="UdpServer" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -36,24 +95,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.UdpServer [:TcpClient.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.UdpServer [:UdpServer.main()].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/kjh01/Desktop/DistributedStorage/distributed-system-primary-storage-java/UdpServer/src/main/java/org/example/Main.java&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.UdpServer [:TcpClient.main()].executor": "Run",
+    "Gradle.UdpServer [:UdpServer.main()].executor": "Run",
+    "Gradle.UdpServer [build].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/kjh01/Desktop/DistributedStorage/distributed-system-primary-storage-java/UdpServer/src/main/java/org/udpServer",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/kjh01/Desktop/DistributedStorage/distributed-system-primary-storage-java/UdpServer/src/main/java/org/example/Main.java",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager">
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\kjh01\Desktop\DistributedStorage\distributed-system-primary-storage-java\UdpServer\src\main\java\org\udpServer" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.UdpServer [build]">
     <configuration name="UdpServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.udpServer.UdpServer" />
       <module name="UdpServer.main" />
@@ -67,8 +133,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UdpServer [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.UdpServer [build]" />
         <item itemvalue="Application.UdpServer" />
       </list>
     </recent_temporary>
@@ -91,6 +180,7 @@
       <workItem from="1731832274002" duration="4302000" />
       <workItem from="1732019831491" duration="1194000" />
       <workItem from="1732021665725" duration="4057000" />
+      <workItem from="1732263058640" duration="4169000" />
     </task>
     <servers />
   </component>

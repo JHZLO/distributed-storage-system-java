@@ -1,18 +1,21 @@
 package org.TcpServer;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
 import org.TcpServer.util.Logger;
 import org.json.JSONObject;
-
-import java.io.*;
-import java.net.*;
 
 public class TcpServer {
     public static void main(String[] args) {
         String storageHost = "localhost";
-        int storagePort = 3300;
+        int storagePort = 5000;
 
         try (ServerSocket serverSocket = new ServerSocket(12345)) {
-            System.out.println("TCP 서버가 실행 중입니다...");
+            System.out.println("TCP 서버가 포트 " + serverSocket.getLocalPort() + "에서 실행 중입니다...");
 
             while (true) {
                 try (Socket clientSocket = serverSocket.accept();
@@ -38,7 +41,8 @@ public class TcpServer {
 
                     try (Socket storageSocket = new Socket(storageHost, storagePort);
                          PrintWriter storageOut = new PrintWriter(storageSocket.getOutputStream(), true);
-                         BufferedReader storageIn = new BufferedReader(new InputStreamReader(storageSocket.getInputStream()))) {
+                         BufferedReader storageIn = new BufferedReader(
+                                 new InputStreamReader(storageSocket.getInputStream()))) {
 
                         storageOut.println(clientRequest);
 

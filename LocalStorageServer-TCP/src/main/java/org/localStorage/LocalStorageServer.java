@@ -12,9 +12,9 @@ import org.localStorage.repository.NoteRepository;
 import org.localStorage.util.Logger;
 
 public class LocalStorageServer {
-    private static final String PRIMARY_SERVER_HOST = "localhost";
+    private static final String PRIMARY_SERVER_HOST = "10.20.0.154";
     private static final int PRIMARY_SERVER_PORT = 5001;
-    private static final String LOCAL_ADDRESS = "http://localhost:3300";
+    private static final String LOCAL_ADDRESS = "http://10.20.0.161:5000";
 
     private final RequestHandler requestHandler;
 

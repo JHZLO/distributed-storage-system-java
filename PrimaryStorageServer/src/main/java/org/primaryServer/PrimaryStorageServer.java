@@ -17,9 +17,9 @@ public class PrimaryStorageServer {
     private final RequestHandler requestHandler;
 
     private static final List<String> LOCAL_STORAGE_SERVERS = Arrays.asList(
-            "http://localhost:3300",
-            "http://localhost:3301",
-            "http://localhost:3302"
+            "http://10.20.0.119:5000", // udp
+            "http://10.20.0.121:5000", // api
+            "http://10.20.0.161:5000" // tcp
     );
 
     public PrimaryStorageServer() {

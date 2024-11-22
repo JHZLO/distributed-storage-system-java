@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.0'
 }
 
 group = 'org.example'
@@ -9,10 +10,22 @@ repositories {
     mavenCentral()
 }
 
+shadowJar {
+    archiveClassifier.set('')
+}
+
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     implementation 'org.json:json:20210307'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'org.udpServer.UdpServer'
+        )
+    }
 }
 
 test {

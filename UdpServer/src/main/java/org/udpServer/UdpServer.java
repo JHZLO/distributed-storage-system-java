@@ -14,11 +14,11 @@ import org.udpServer.util.Logger;
 public class UdpServer {
     public static void main(String[] args) {
         String storageHost = "localhost";
-        int storagePort = 3302;
+        int storagePort = 5000;
         int udpServerPort = 12345;
 
         try (DatagramSocket udpSocket = new DatagramSocket(udpServerPort)) {
-            System.out.println("UDP 서버가 실행 중입니다...");
+            System.out.println("UDP 서버가 " + udpServerPort + "포트에서 실행 중입니다...");
 
             while (true) {
                 try {

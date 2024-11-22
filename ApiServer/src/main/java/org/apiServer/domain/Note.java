@@ -1,4 +1,4 @@
-package org.example.domain;
+package org.apiServer.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;

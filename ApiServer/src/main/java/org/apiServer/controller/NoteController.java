@@ -1,8 +1,8 @@
-package org.example.controller;
+package org.apiServer.controller;
 
-import org.example.domain.Note;
-import org.example.service.LocalStorageService;
-import org.example.util.Logger;
+import org.apiServer.domain.Note;
+import org.apiServer.service.LocalStorageService;
+import org.apiServer.util.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,9 +1,9 @@
-package org.example.service;
+package org.apiServer.service;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import org.example.domain.Note;
+import org.apiServer.domain.Note;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

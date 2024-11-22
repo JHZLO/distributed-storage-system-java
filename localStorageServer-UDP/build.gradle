@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.0'
 }
 
 group = 'org.example'
@@ -9,11 +10,23 @@ repositories {
     mavenCentral()
 }
 
+shadowJar {
+    archiveClassifier.set('')
+}
+
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     implementation 'org.json:json:20210307'
     implementation 'com.google.code.gson:gson:2.8.9'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'org.localStorage.Application'
+        )
+    }
 }
 
 test {

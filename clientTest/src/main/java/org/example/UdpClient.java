@@ -6,12 +6,13 @@ import java.net.InetAddress;
 
 public class UdpClient {
     public static void main(String[] args) {
-        String serverHost = "localhost";
+        String serverHost = "10.20.0.119";
         int serverPort = 12345;
-        String request = "{\"method\": \"POST\", \"path\": \"/notes\", \"body\": {\"title\": \"Neww Note\", \"body\": \"This is a test note\"}}";
+        String request = "{\"method\": \"POST\", \"path\": \"/notes\", \"body\": {\"title\": \"UDP Note\", \"body\": \"This is a UDP note\"}}";
 
         try (DatagramSocket socket = new DatagramSocket()) {
             // 서버로 요청 전송
+            System.out.println("UDP 서버로 요청: " + request);
             byte[] buffer = request.getBytes();
             InetAddress serverAddress = InetAddress.getByName(serverHost);
             DatagramPacket packet = new DatagramPacket(buffer, buffer.length, serverAddress, serverPort);

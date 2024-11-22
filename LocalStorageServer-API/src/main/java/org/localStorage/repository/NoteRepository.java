@@ -10,12 +10,13 @@ import java.util.Map;
 import org.localStorage.domain.Note;
 
 public class NoteRepository {
-    private final String filePath = "src/main/resources/notes.json";
+    private final String filePath;
     private final Gson gson = new Gson();
     private Map<Integer, Note> notes = new HashMap<>();
     private int nextId = 1;
 
     public NoteRepository() {
+        this.filePath = "./resources/notes.json";
         loadFromFile();
     }
 
