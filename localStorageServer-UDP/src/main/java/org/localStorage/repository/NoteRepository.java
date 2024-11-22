@@ -24,6 +24,12 @@ public class NoteRepository {
         return notes;
     }
 
+    public void createNoteFromPrimary(int id, String title, String body) {
+        Note note = new Note(id, title, body);
+        notes.put(id, note);
+        saveToFile();
+    }
+
     public Note createNote(String title, String body) {
         Note note = new Note(nextId++, title, body);
         notes.put(note.getId(), note);
@@ -71,6 +77,11 @@ public class NoteRepository {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void clearAllNotes() {
+        notes.clear();
+        saveToFile();
     }
 
     private void loadFromFile() {

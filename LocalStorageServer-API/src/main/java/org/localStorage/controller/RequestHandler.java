@@ -41,6 +41,10 @@ public class RequestHandler {
         return gson.toJson(repository.getNotes().values());
     }
 
+    public void createNoteFromPrimary(int id, String title, String body) {
+        repository.createNoteFromPrimary(id, title, body);
+    }
+
     private String handleGetNoteById(String path) {
         int id = Integer.parseInt(path.split("/")[2]);
         Note note = repository.getNoteById(id);
@@ -102,5 +106,9 @@ public class RequestHandler {
             return gson.toJson(new SuccessResponse("메모 삭제 성공"));
         }
         return gson.toJson(new ErrorResponse("메모 삭제 실패"));
+    }
+
+    public void clearAllNotes() {
+        repository.clearAllNotes();
     }
 }

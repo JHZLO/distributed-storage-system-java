@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.localStorage.controller.RequestHandler;
 import org.localStorage.repository.NoteRepository;
@@ -26,6 +27,11 @@ public class LocalStorageServer {
     public void start(int port) {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("APILocalStorageServer가 포트 " + port + "에서 실행 중입니다...");
+            try {
+                initializeFromPrimaryServer(); // PrimaryStorageServer로부터 데이터 초기화
+            } catch (Exception e) {
+                System.err.println("PrimaryStorageServer로부터 초기화 실패: " + e.getMessage());
+            }
 
             while (true) {
                 try (Socket clientSocket = serverSocket.accept();
@@ -126,6 +132,50 @@ public class LocalStorageServer {
             sendSuccessResponse(out, response);
         } catch (Exception e) {
             sendErrorResponse(out, "요청 처리 중 오류 발생");
+        }
+    }
+
+    private void initializeFromPrimaryServer() throws IOException {
+        try (Socket primarySocket = new Socket(PRIMARY_SERVER_HOST, PRIMARY_SERVER_PORT);
+             PrintWriter out = new PrintWriter(primarySocket.getOutputStream(), true);
+             BufferedReader in = new BufferedReader(new InputStreamReader(primarySocket.getInputStream()))) {
+
+            JSONObject initRequest = new JSONObject();
+            initRequest.put("method", "GET");
+            initRequest.put("path", "/init");
+
+            out.println(initRequest.toString());
+
+            String response = in.readLine();
+            if (response == null || response.isEmpty()) {
+                throw new IOException("PrimaryStorageServer로부터 초기화 응답이 null이거나 비어 있습니다.");
+            }
+
+            JSONObject jsonResponse = new JSONObject(response);
+
+            if (jsonResponse.has("notes")) {
+                JSONArray notesArray = jsonResponse.getJSONArray("notes");
+
+                requestHandler.clearAllNotes();
+
+                // PrimaryStorageServer의 데이터로 덮어쓰기
+                for (int i = 0; i < notesArray.length(); i++) {
+                    JSONObject noteJson = notesArray.getJSONObject(i);
+                    int id = noteJson.getInt("id");
+                    String title = noteJson.getString("title");
+                    String body = noteJson.getString("body");
+
+                    requestHandler.createNoteFromPrimary(id, title, body);
+                }
+
+                System.out.println("[INIT FROM PrimaryStorage]");
+            } else {
+                throw new IOException();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw e;
         }
     }
 

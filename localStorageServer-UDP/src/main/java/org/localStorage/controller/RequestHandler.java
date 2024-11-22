@@ -37,6 +37,10 @@ public class RequestHandler {
         return gson.toJson(new ErrorResponse("잘못된 요청"));
     }
 
+    public void createNoteFromPrimary(int id, String title, String body) {
+        repository.createNoteFromPrimary(id, title, body);
+    }
+
     private String handleGetAllNotes() {
         return gson.toJson(repository.getNotes().values());
     }
@@ -102,5 +106,9 @@ public class RequestHandler {
             return gson.toJson(new SuccessResponse("메모 삭제 성공"));
         }
         return gson.toJson(new ErrorResponse("메모 삭제 실패"));
+    }
+
+    public void clearAllNotes() {
+        repository.clearAllNotes();
     }
 }

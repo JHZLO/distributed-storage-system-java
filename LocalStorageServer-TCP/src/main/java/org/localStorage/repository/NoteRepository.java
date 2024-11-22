@@ -2,8 +2,12 @@ package org.localStorage.repository;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +33,12 @@ public class NoteRepository {
         notes.put(note.getId(), note);
         saveToFile();
         return note;
+    }
+
+    public void createNoteFromPrimary(int id, String title, String body) {
+        Note note = new Note(id, title, body);
+        notes.put(id, note);
+        saveToFile();
     }
 
     public Note getNoteById(int id) {
@@ -66,6 +76,11 @@ public class NoteRepository {
         return false;
     }
 
+    public void clearAllNotes() {
+        notes.clear();
+        saveToFile();
+    }
+
     private void saveToFile() {
         try (Writer writer = new FileWriter(filePath)) {
             gson.toJson(notes, writer);
@@ -76,10 +91,13 @@ public class NoteRepository {
 
     private void loadFromFile() {
         File file = new File(filePath);
-        if (!file.exists()) return;
+        if (!file.exists()) {
+            return;
+        }
 
         try (Reader reader = new FileReader(file)) {
-            Type type = new TypeToken<Map<Integer, Note>>() {}.getType();
+            Type type = new TypeToken<Map<Integer, Note>>() {
+            }.getType();
             notes = gson.fromJson(reader, type);
             if (!notes.isEmpty()) {
                 nextId = notes.keySet().stream().max(Integer::compare).orElse(0) + 1;

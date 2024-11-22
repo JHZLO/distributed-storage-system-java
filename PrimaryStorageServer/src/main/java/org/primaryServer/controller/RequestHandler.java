@@ -37,7 +37,7 @@ public class RequestHandler {
         return gson.toJson(new ErrorResponse("잘못된 요청"));
     }
 
-    private String handleGetAllNotes() {
+    public String handleGetAllNotes() {
         return gson.toJson(repository.getNotes().values());
     }
 

@@ -8,8 +8,11 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.primaryServer.controller.RequestHandler;
+import org.primaryServer.domain.Note;
 import org.primaryServer.repository.NoteRepository;
 import org.primaryServer.util.Logger;
 
@@ -42,10 +45,17 @@ public class PrimaryStorageServer {
                     String method = jsonRequest.getString("method");
                     String path = jsonRequest.getString("path");
 
-                    String response = requestHandler.handleRequest(method, path, jsonRequest);
+                    String response = "";
 
-                    // 데이터 변경 요청인 경우 로컬 서버와 동기화
-                    if (isDataChangingRequest(method)) {
+                    if (path.equals("/init") && method.equalsIgnoreCase("GET")) { // 데이터 초기화 -> 로컬 스토리지 연결 시 초기화
+                        response = handleInitRequest();
+                    }
+
+                    if (!path.equals("/init") || !method.equalsIgnoreCase("GET")) { // 데이터 저장
+                        response = requestHandler.handleRequest(method, path, jsonRequest);
+                    }
+
+                    if (isDataChangingRequest(method)) { // 데이터 변경 있는 경우
                         synchronizeToLocalStorageServers(jsonRequest);
                     }
 
@@ -57,6 +67,34 @@ public class PrimaryStorageServer {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private String handleInitRequest() {
+        try {
+            // Note 데이터를 가져옴
+            String notesJsonString = requestHandler.handleGetAllNotes();
+
+            // Note 데이터가 null이거나 비어 있는 경우 빈 notes JSON 생성
+            if (notesJsonString == null || notesJsonString.isEmpty() || notesJsonString.equals("[]")) {
+                System.out.println("Notes 데이터가 비어 있습니다.");
+                return new JSONObject().put("notes", new JSONArray()).toString(); // 빈 JSONArray 반환
+            }
+
+            // Notes JSON 문자열을 JSONArray로 변환
+            JSONArray notesArray = new JSONArray(notesJsonString);
+
+            // 최종 응답 JSON 생성
+            JSONObject response = new JSONObject();
+            response.put("notes", notesArray);
+
+            System.out.println("Init Response: " + response.toString()); // 디버깅용 출력
+            return response.toString();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            // 예외 발생 시 빈 JSON 반환
+            return new JSONObject().put("notes", new JSONArray()).toString();
         }
     }
 
@@ -113,10 +151,6 @@ public class PrimaryStorageServer {
     }
 
     private void sendSuccessResponse(PrintWriter out, String response) {
-        out.println("HTTP/1.1 200 OK");
-        out.println("Content-Type: application/json");
-        out.println("Content-Length: " + response.getBytes().length);
-        out.println();
         out.println(response);
     }
 }
