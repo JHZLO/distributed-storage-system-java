@@ -86,8 +86,8 @@ public class LocalStorageServer {
                 for (int i = 0; i < notesArray.length(); i++) {
                     JSONObject noteJson = notesArray.getJSONObject(i);
                     int id = noteJson.getInt("id");
-                    String title = noteJson.getString("title");
-                    String body = noteJson.getString("body");
+                    String title = noteJson.optString("title", null);
+                    String body = noteJson.optString("body", null);
 
                     requestHandler.createNoteFromPrimary(id, title, body);
                 }

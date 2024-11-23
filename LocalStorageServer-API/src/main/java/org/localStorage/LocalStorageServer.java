@@ -74,7 +74,6 @@ public class LocalStorageServer {
         String line;
         int contentLength = 0;
 
-        // 헤더 읽기
         while ((line = in.readLine()) != null && !line.isEmpty()) {
             headerBuilder.append(line).append("\n");
             if (line.toLowerCase().startsWith("content-length:")) {
@@ -162,8 +161,8 @@ public class LocalStorageServer {
                 for (int i = 0; i < notesArray.length(); i++) {
                     JSONObject noteJson = notesArray.getJSONObject(i);
                     int id = noteJson.getInt("id");
-                    String title = noteJson.getString("title");
-                    String body = noteJson.getString("body");
+                    String title = noteJson.optString("title", null);
+                    String body = noteJson.optString("body", null);
 
                     requestHandler.createNoteFromPrimary(id, title, body);
                 }
