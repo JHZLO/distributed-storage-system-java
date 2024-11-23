@@ -131,11 +131,11 @@ public class PrimaryStorageServer {
              PrintWriter out = new PrintWriter(localSocket.getOutputStream(), true);
              BufferedReader in = new BufferedReader(new InputStreamReader(localSocket.getInputStream()))) {
 
-            Logger.log(host + ":" + port, "REQUEST", "Forward Request to LocalStorage");
+            Logger.log(host + ":" + port, jsonRequest.toString(), "Forward Request to LocalStorage");
             out.println(jsonRequest.toString());
 
             String primaryResponse = in.readLine();
-            Logger.log(host + ":" + port, "REPLY", "Acknowledge write completed");
+            Logger.log(host + ":" + port, primaryResponse, "Acknowledge write completed");
 
         } catch (IOException e) {
             System.err.println("LocalStorageServer(" + host + ":" + port + ")와의 연결 실패");

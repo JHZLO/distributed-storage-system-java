@@ -98,11 +98,11 @@ public class NoteController {
         String requestBody = "";
 
         if (localStorageService.deleteNoteById(id)) {
-            String responseBody = "{\"message\": \"메모 삭제 성공\"}";
+            String responseBody = "{\"msg\": \"OK\"}";
             Logger.log(method, path, requestBody, responseBody);
             return ResponseEntity.ok(responseBody);
         } else {
-            String responseBody = "{\"message\": \"메모 삭제 실패\"}";
+            String responseBody = "{\"msg\": \"ERROR\"}";
             Logger.log(method, path, requestBody, responseBody);
             return ResponseEntity.status(404).body(responseBody);
         }

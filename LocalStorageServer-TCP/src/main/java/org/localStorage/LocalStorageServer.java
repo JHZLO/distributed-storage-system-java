@@ -106,13 +106,12 @@ public class LocalStorageServer {
              PrintWriter out = new PrintWriter(primarySocket.getOutputStream(), true);
              BufferedReader in = new BufferedReader(new InputStreamReader(primarySocket.getInputStream()))) {
 
+            Logger.log(PRIMARY_SERVER_HOST + ":" + PRIMARY_SERVER_PORT, jsonRequest.toString(), "Forward Request to primary");
             jsonRequest.put("origin",LOCAL_ADDRESS);
-
-            Logger.log(PRIMARY_SERVER_HOST + ":" + PRIMARY_SERVER_PORT, "REQUEST", "Forward Request to primary");
             out.println(jsonRequest.toString());
 
             String primaryResponse = in.readLine();
-            Logger.log(PRIMARY_SERVER_HOST + ":" + PRIMARY_SERVER_PORT, "REPLY", "Acknowledge write completed");
+            Logger.log(PRIMARY_SERVER_HOST + ":" + PRIMARY_SERVER_PORT, primaryResponse, "Acknowledge write completed");
         } catch (IOException e) {
             System.err.println("PrimaryStorageServer와의 동기화 실패");
             e.printStackTrace();
