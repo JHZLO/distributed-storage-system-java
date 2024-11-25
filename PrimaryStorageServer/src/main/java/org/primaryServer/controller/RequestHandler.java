@@ -90,7 +90,7 @@ public class RequestHandler {
 
         boolean updated = repository.updateNote(id, title, body);
         if (updated) {
-            return gson.toJson(new SuccessResponse("메모 일부 업데이트 성공"));
+            return gson.toJson(upda)
         }
         return gson.toJson(new ErrorResponse("메모 업데이트 실패"));
     }
