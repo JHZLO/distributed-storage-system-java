@@ -99,7 +99,7 @@ public class RequestHandler {
             response.put("body", body);
             return response.toString();
         }
-        return createErrorResponse(); // 에러 메시지 통일
+        return createErrorResponse();
     }
 
     private String handleDeleteNote(String path) {
@@ -118,5 +118,13 @@ public class RequestHandler {
         JSONObject errorResponse = new JSONObject();
         errorResponse.put("msg", "ERROR");
         return errorResponse.toString();
+    }
+
+    public void clearAllNotes() {
+        repository.clearAllNotes();
+    }
+
+    public void createNoteFromPrimary(int id, String title, String body) {
+        repository.createNoteFromPrimary(id, title, body);
     }
 }
