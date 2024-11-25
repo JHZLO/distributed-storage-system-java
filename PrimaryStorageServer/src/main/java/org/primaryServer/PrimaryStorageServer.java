@@ -72,28 +72,22 @@ public class PrimaryStorageServer {
 
     private String handleInitRequest() {
         try {
-            // Note 데이터를 가져옴
             String notesJsonString = requestHandler.handleGetAllNotes();
 
-            // Note 데이터가 null이거나 비어 있는 경우 빈 notes JSON 생성
             if (notesJsonString == null || notesJsonString.isEmpty() || notesJsonString.equals("[]")) {
                 System.out.println("Notes 데이터가 비어 있습니다.");
-                return new JSONObject().put("notes", new JSONArray()).toString(); // 빈 JSONArray 반환
+                return new JSONObject().put("notes", new JSONArray()).toString();
             }
 
-            // Notes JSON 문자열을 JSONArray로 변환
             JSONArray notesArray = new JSONArray(notesJsonString);
 
-            // 최종 응답 JSON 생성
             JSONObject response = new JSONObject();
             response.put("notes", notesArray);
 
-            System.out.println("Init Response: " + response.toString()); // 디버깅용 출력
             return response.toString();
 
         } catch (Exception e) {
             e.printStackTrace();
-            // 예외 발생 시 빈 JSON 반환
             return new JSONObject().put("notes", new JSONArray()).toString();
         }
     }
