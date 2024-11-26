@@ -128,6 +128,10 @@ public class LocalStorageServer {
                 syncWithPrimaryServer(jsonRequest);
             }
 
+            if (isFromPrimary(jsonRequest)) {
+                out.println(response);
+                return;
+            }
             sendSuccessResponse(out, response);
         } catch (Exception e) {
             sendErrorResponse(out, "요청 처리 중 오류 발생");
@@ -183,8 +187,9 @@ public class LocalStorageServer {
              PrintWriter out = new PrintWriter(primarySocket.getOutputStream(), true);
              BufferedReader in = new BufferedReader(new InputStreamReader(primarySocket.getInputStream()))) {
 
-            Logger.log(PRIMARY_SERVER_HOST + ":" + PRIMARY_SERVER_PORT, jsonRequest.toString(), "Forward Request to primary");
-            jsonRequest.put("origin",LOCAL_ADDRESS);
+            Logger.log(PRIMARY_SERVER_HOST + ":" + PRIMARY_SERVER_PORT, jsonRequest.toString(),
+                    "Forward Request to primary");
+            jsonRequest.put("origin", LOCAL_ADDRESS);
             out.println(jsonRequest.toString());
 
             String primaryResponse = in.readLine();
@@ -212,7 +217,7 @@ public class LocalStorageServer {
         out.println("HTTP/1.1 400 Bad Request");
         out.println("Content-Type: application/json");
         out.println();
-        out.println("{\"error\": \"" + errorMessage + "\"}");
+        out.println(errorMessage);
     }
 
     private void sendSuccessResponse(PrintWriter out, String response) {

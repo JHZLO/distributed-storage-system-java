@@ -129,6 +129,7 @@ public class PrimaryStorageServer {
             out.println(jsonRequest.toString());
 
             String primaryResponse = in.readLine();
+
             Logger.log(host + ":" + port, primaryResponse, "Acknowledge write completed");
 
         } catch (IOException e) {
