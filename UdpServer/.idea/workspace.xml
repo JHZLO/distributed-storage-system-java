@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6884aeeb-499a-4a9a-a4fc-36eff6e141a7" name="Changes" comment="" />
+    <list default="true" id="6884aeeb-499a-4a9a-a4fc-36eff6e141a7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../PrimaryStorageServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../PrimaryStorageServer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,31 +67,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.UdpServer [:TcpClient.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.UdpServer [:UdpServer.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.UdpServer [build].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/kjh01/Desktop/DistributedStorage/distributed-system-primary-storage-java/UdpServer/src/main/java/org/udpServer&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/kjh01/Desktop/DistributedStorage/distributed-system-primary-storage-java/UdpServer/src/main/java/org/example/Main.java&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.UdpServer [:TcpClient.main()].executor": "Run",
+    "Gradle.UdpServer [:UdpServer.main()].executor": "Run",
+    "Gradle.UdpServer [build].executor": "Run",
+    "Gradle.UdpServer [clean].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/kjh01/Desktop/DistributedStorage/distributed-system-primary-storage-java/UdpServer/src/main/java/org/udpServer",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/kjh01/Desktop/DistributedStorage/distributed-system-primary-storage-java/UdpServer/src/main/java/org/example/Main.java",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\kjh01\Desktop\DistributedStorage\distributed-system-primary-storage-java\UdpServer\src\main\java\org\udpServer" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.UdpServer [build]">
+  <component name="RunManager" selected="Gradle.UdpServer [clean]">
     <configuration name="UdpServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.udpServer.UdpServer" />
       <module name="UdpServer.main" />
@@ -124,8 +128,31 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="UdpServer [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.UdpServer [clean]" />
         <item itemvalue="Gradle.UdpServer [build]" />
         <item itemvalue="Application.UdpServer" />
       </list>
@@ -152,6 +179,7 @@
       <workItem from="1732263058640" duration="4169000" />
       <workItem from="1732515779387" duration="1204000" />
       <workItem from="1732603034993" duration="578000" />
+      <workItem from="1732689819133" duration="643000" />
     </task>
     <servers />
   </component>
