@@ -1,5 +1,5 @@
-# distributed-system-primary-storage-java
-분산처리 데이터베이스 동기화
+# 분산처리 데이터베이스 동기화
+![image](https://github.com/user-attachments/assets/8da0a370-6673-4f95-8ebb-145f2c66c29c)
 
 ## ✅ Overview
 ![image](https://github.com/user-attachments/assets/acc5471d-06c1-4e75-8c7a-cc6bc39632ec)
@@ -74,18 +74,21 @@ JSON의 형식을 총 두 번 정의해줘야함
 백업 서버는 x
 
 ### 동작과정
-0. 사전에 LocalStorageServer는 PrimaryStorageServer와 연결하고, Primary서버로부터 전체 데이터를 받는다.
-1. client가 api서버에 post 요청을 날린다. (POST /notes)
-(POST 요청시에는 POST /primary가 동시에 이루어지도록, 동시에 request하도록 설계한다.)
-2. localStorage가 업데이트 되며, primaryStorage에게 request를 날린다 (POST /primary)
-3. primaryStorage는 backupServer에 update된 내용을 전달한다 (POST /backup)
-4. 동시에 primaryStorage는 연결되어있는 localStorage들에게 update된 내용을 전달한다(write). (localStorage Server의 Post 메서드 호출 POST /notes)
-5. primaryStorage가 LocalStorage에 write하면 LocalStorageServer는 response message를 전달한다.
-6. 이러한 모든 과정이 끝나면 client에게 다시 acknowledge message를 전달한다.
+![image](https://github.com/user-attachments/assets/464a1be6-0d1a-41c4-8421-4c0bd5b599da)
+![image](https://github.com/user-attachments/assets/c2d4b94f-6f65-4a38-8c04-329c4bad12c0)
+
 
 
 ## 📨 Messages
 ![image](https://github.com/user-attachments/assets/0500d622-0a8c-4190-aff6-16494f213525)
 
 로그 띄우기
+
+---
+
+## 성능테스트
+![image](https://github.com/user-attachments/assets/b7680e9c-b8c5-4fa5-b37c-2103050eb608)
+![image](https://github.com/user-attachments/assets/ff4c765c-3503-42c8-87d6-9b0ddb8e1569)
+![image](https://github.com/user-attachments/assets/16b8a0bc-3985-4e89-9520-02d2e476a387)
+
  
